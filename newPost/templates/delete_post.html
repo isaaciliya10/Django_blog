@@ -1,0 +1,70 @@
+
+{% extends 'base1.html' %}
+{% load static %}
+{% block title %}Gistme | View Category {% endblock %}
+<script>function preback(){window.history.forward();}setTimeout("preback(),0");window.onunload=function(){null;}</script>
+
+{% block content %}
+            
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <form class="d-flex align-items-center mb-3">
+                                           
+                                             
+                                      
+                                    </div>
+                                    <h4 class="page-title" style="color:#a4c639;">Dashboard: <span class="badge rounded-pill" style="background-color:#a4c639; color:white"> ID:  {{post.id}}</span> </h4>
+                                </div>
+                            </div>
+                        </div>     
+                        <!-- end page title --> 
+
+                       <div class="row">
+                             
+                                    <div class="col-lg-12">
+                                        <div class="card border-dark border mb-3">
+                                            <h4 class="card-header text-center" style="color:white; background-color:#a4c639;">{{post.category.title}}</h4>
+                                            <div class="card-body text-center">
+                                                <form method='POST'>
+
+                                                    {% csrf_token %}
+                                                    
+                                                 <h2>Are you sure want to delete {{ post.title }} ?</h2>
+
+                                                 <button type="submit" class="btn btn-outline-danger">Confirm</button>
+ 
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                </form>  
+
+                                </div>
+                            </div>
+                        </div>
+                <!-- Footer Start -->
+            
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+         
+        
+{% endblock %}

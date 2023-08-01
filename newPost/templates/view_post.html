@@ -1,0 +1,119 @@
+
+{% extends 'base1.html' %}
+{% load static %}
+{% block title %}Gistme | View Post{% endblock %}
+<script>function preback(){window.history.forward();}setTimeout("preback(),0");window.onunload=function(){null;}</script>
+
+{% block content %}
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <form class="d-flex align-items-center mb-3">
+                                           
+                                             
+                                        </form>
+                                    </div>
+                                    <h4 class="page-title" style="color:#a4c639;">Dashboard: <span class="badge rounded-pill" style="background-color:#a4c639; color:white">  {{count_post}}</span> Available Posts</h4></h4>
+                                </div>
+                            </div>
+                        </div>      
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-header text-center" style="color:#a4c639;">ALL POSTS</h4>
+                                        <div class="table-responsive">
+                                            <table class="table tabale-unstriped table-bordered">
+                                        
+                                                    <tr>
+                                                        <th style="color:white; background-color:#a4c639;">ID</th>
+                                                        <th>Title</th>
+                                                        <th>Date/Time</th>
+                                                        <th>Author</th>
+                                                        <th class=" text-center">Content</th>
+                                                        <th class="text-center">Image</th>
+                                                        <th class="border-success text-center bg-success border-1 text-white">Preview</th>
+                                                        <th class="border-info text-center bg-info text-white" >Edit</th>
+                                                        <th class="border-danger text-center bg-danger text-white">Delete</th>
+                                                    </tr>
+                                                
+                                                <tbody>
+                                                    
+                                                    {% for post in page %}
+                                                    
+                                                    <tr>
+                                                        <th scope="row" style="color:white; background-color:#a4c639;">{{post.id}}</th>
+                                                        <td>{{post.title|truncatewords:8}}</td>
+                                                        <td>{{post.created|date:' M-D-Y'}}</td>
+                                                        <td>{{post.Author}}</td>
+                                                        <td>{{post.content|truncatewords:10}}</td>
+                                                        <td><br><img src="{{post.image.url}}" alt="Image" class="img-fluid" style="width:50px; height:50px; border-radius:20%;"></td>
+                                                        <td class="border-success text-center border-1  text-success">Preview</td>
+                                                        
+                                                        <td class="border-danger text-center border-1 text-danger"> <a href="{% url 'update_post' post.id %}" class="action-icon"> <i class="mdi mdi-square-edit-outline text-info"></i></a></td>
+                                                        <td class="border-danger text-center border-1 text-danger"><a href="{% url 'delete_post' post.id %}" class="action-icon"> <i class="mdi mdi-delete-outline text-danger text-center"></i></a></td>
+                                                    </tr>
+
+                                                    {% endfor %}
+                                                    
+                                                </tbody>
+      
+                                        </div>
+                                    </div>
+                                </div> <!-- end card -->
+                            </div> <!-- end col -->
+        
+                            
+                        </div>
+                        <!--- end row -->
+                <!-- Footer Start -->
+                <div class="container">
+                    <div class="row">
+                      <hr>
+                      <div class="col-3">
+                        
+                            {% if page.has_previous %}
+                            <a class="btn btn-primary" href="?page=1">First</a> |
+                            <a class="btn btn-primary" href="?page={{page.previous_page_number}}">&#10094;&#10094;Previous</a>
+                            {% endif %}
+                  
+                      </div>
+                      <div class="col-3">
+                     
+                          <center><span class="text-primary section-title">Page &nbsp; {{page.number }} of {{page.paginator.num_pages}} </span> </center>
+                        </div>
+                      <div class="col-3">
+                          {% if page.has_next %}
+                          <a class="btn btn-primary" href="?page={{page.next_page_number}}">Next&#10095;&#10095;</a> |
+                          <a class="btn btn-primary" href="?page={{page.paginator.num_pages}}"> Last</a>
+                          {% endif %}
+                      </div>
+                  
+                      <div class="col-3">&nbsp;</div>
+                  
+                    </div>
+                   </div>
+               
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+            
+
+     
+      {% endblock %}

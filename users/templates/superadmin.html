@@ -1,0 +1,85 @@
+
+{% extends 'base2.html' %}
+{% load static %}
+{% block title %}Gistme | Super User{% endblock %}
+
+<script>function preback(){window.history.forward();}setTimeout("preback(),0");window.onunload=function(){null;}</script>
+
+{% block content %}
+
+<style>h4{color:red;}</style>
+
+<body>
+    
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+               
+
+                <div class="login-signup">
+                    {% for message in messages  %}
+                    <h4>{{message}}</h4> 
+                    {% endfor %}
+                <h1><span style="color:#a4c639;"> Gistme.com</span><h1><br>
+
+                    <span class="title">Not a member?
+                        <a href="#" class="text signup-link">Signup Now</a>
+                    </span>
+                </div>
+                <div class="login-signup">
+                    <span class="title">Already a member?
+                        <a href="{% url 'userlogin' %}" class="text login-link">Login Now</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="form signup">
+                <span class="title">Regist &nbsp; <span style="color:#a4c639; text-align:center"> Gistme.com</span></span>
+                
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        <input type="text" name="username" placeholder="Create your sername" required>
+                        <i class="uil uil-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" name="fname" placeholder="Enter your name" required>
+                        <i class="uil uil-users"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="pass1" class="password" placeholder="Create a password" required>
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="pass2" class="password" placeholder="Confirm a password" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="termCon" required>
+                            <label for="termCon" class="text">I accepted all terms and conditions</label>
+                        </div>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="submit" value="Signup">
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                    <span class="text">Already a member?
+                        <a href="{% url 'userlogin' %}" class="text login-link">Login Now</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %} 
+    

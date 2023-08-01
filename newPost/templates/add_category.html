@@ -1,0 +1,82 @@
+
+{% extends 'base1.html' %}
+{% load static %}
+{% block title %}Gistme | Add Category{% endblock %}
+<script>function preback(){window.history.forward();}setTimeout("preback(),0");window.onunload=function(){null;}</script>
+
+{% block content %}
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+                        
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <form class="d-flex align-items-center mb-3">
+                                           
+                                             
+                                        </form>
+                                    </div>
+                                    <h4 class="page-title" style="color:#a4c639;">Dashboard
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {% for message in messages  %}
+                                        {{message}}
+                                       {% endfor %}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>     
+                        <!-- end page title --> 
+
+                       <div class="row"style="align-content: center;">
+                                      
+                        <!-- Form row -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card bg-pattern">
+                                    <div class="card-body  ">
+                                        <h4 class="text-center">Add Category</h4>
+                                            <div class="row">
+                                                <div class="col-md-12 mb-3">
+                                                    <form action="#" method="POST" >
+                                                        <div class="form-group">
+                                      
+                                                          {% csrf_token %}
+                                                          
+                                                          {{ forms.as_p }}
+                                                        
+                                                        <div class="form-group">
+                                                          <input type="submit" value="Add Category" class="btn btn-lg" style="background-color:#a4c639; color:white">
+                                                        </div>
+                                                        
+                                      
+                                                    </form>
+                                            </div>
+                        <!-- end row -->
+
+
+                                </div>
+                            </div>
+                        </div>
+                <!-- Footer Start -->
+                
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+         {% endblock %}
+        
+
+     

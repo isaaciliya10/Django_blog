@@ -1,0 +1,27 @@
+
+{% load static %}
+ 
+{% block content %}
+
+<div class="col-md-3">
+  <div class="mb-4">
+    <a href="https://vimeo.com/342333493'" data-fancybox class="video-wrap">
+      <span class="play-wrap"><span class="icon-play"></span></span>
+      <img src="{% static 'images/img_h_5.jpg' %}" alt="Image" class="img-fluid rounded">
+    </a>
+  </div>
+  <div class="floating-block sticky-top text-center">
+    <h2 class="mb-3 text-primary">Subscribe to Newsletter</h2>
+    <p>Far far away behind the word mountains far from.</p>
+    <form action="#" method="POST">
+      {% csrf_token %}
+      {{ sidebar.as_p }}
+      <input type="submit" value="Subscribe" class="btn btn-primary btn-block">
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+    
+ {% endblock %} 

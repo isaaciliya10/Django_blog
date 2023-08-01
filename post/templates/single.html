@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gistme | Full Details {% endblock  %}
+{% block content %}
+
+
+
+    <div class="featured-post single-article">
+      <div class="container shadow-sm">
+        <div class="post-slide single-page" ><img src='{{posts.image.url}}'height=100%; width=100%;>
+          <div class="text-wrap pb-2">
+            
+            <h3 class="text-black">{{posts.title}}</h3>
+            <div class="meta">
+              <span>{{posts.created}}</span>
+              <span>&bullet;</span>
+              <span>5 mins read</span>
+            </div>
+          </div>
+        </div> <!-- .post-slide -->
+
+      </div>
+    </div>
+
+    
+    <div class="container article">
+      <div class="row justify-content-center align-items-stretch">
+        
+        <article class="col-lg-8 order-lg-2 px-lg-5">
+          <p>{{posts.content}}</p>
+
+           
+
+
+          <div class="pt-5 categories_tags ">
+                <p>Categories:  <a href="#">Design</a>, <a href="#">Events</a>  Tags: <a href="#">#html</a>, <a href="#">#trends</a></p>
+              </div>
+
+              <div class="post-single-navigation d-flex align-items-stretch">
+                <a href="#" class="mr-auto w-50 pr-4">
+                  <span class="d-block">Previous Post</span>
+                  A Mounteering Guide For Beginners
+                </a>
+                <a href="#" class="ml-auto w-50 text-right pl-4">
+                  <span class="d-block">Next Post</span>
+                  12 Creative Designers Share Ideas About Web Design
+                </a>
+              </div>
+    <hr class="mt-5">
+            <div class="pt-5">
+              <h3 class="mb-5">{{count_comment}} Comments</h3>
+             
+              
+              <div class="comment-form-wrap pt-5">
+                <h3 class="mb-5">Leave a comment</h3>
+                {% for messages in messages %}
+                 <P> {{messages}}
+                {% endfor %}
+                <form action="#" method="POST">
+                  <div class="form-group">
+
+                    {% csrf_token %}
+                    {{ forms.as_p }}
+                  
+                  <div class="form-group">
+                    <input type="submit" value="Post Comment" class="btn btn-primary btn-md">
+                  </div>
+                  
+
+                </form>
+              </div>
+
+              
+            </div>
+            <ul class="comment-list">
+              {% for comment in posts.comments.all %}
+              <li class="comment shadow-lg">
+                <div class="vcard bio">
+                  <img src="{% static 'images/person_6.jpg' %}" alt="Image placeholder">
+                </div>
+                <div class="comment-body">
+                  <h3>{{comment.name}}</h3>
+                  <div class="meta">{{comment.created|date:' M-D-Y'}}</div>
+                  <p>{{comment.body}}</p>
+                  <p><a href="#" class="reply">Reply</a></p>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+        </article>
+
+        <div class="col-md-12 col-lg-1 order-lg-1">
+          <div class="share sticky-top">
+            <h3>Share</h3>
+            <ul class="list-unstyled share-article">
+              <li><a href="#"><span class="icon-facebook"></span></a></li>
+              <li><a href="#"><span class="icon-twitter"></span></a></li>
+              <li><a href="#"><span class="icon-instagram"></span></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 mb-5 mb-lg-0 order-lg-3">
+
+          <div class="mb-4">
+            <a href="https://vimeo.com/342333493" data-fancybox class="video-wrap">
+              <span class="play-wrap"><span class="icon-play"></span></span>
+              <img src="{% static 'images/img_h_5.jpg' %}" alt="Image" class="img-fluid rounded">
+            </a>
+          </div>  
+
+          <div class="share floating-block sticky-top">
+            
+            <h2 class="mb-3 text-primary text-center" >Subscribe to Newsletter</h2>
+            <h2 class="mb-3 text-primary text-center">To receive our Update</h2>
+              <form action="#">
+                <input type="email" class="form-control mb-2" placeholder="Enter email">
+                <input type="submit" value="Subscribe" class="btn btn-primary btn-block">
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+   {% endblock %}

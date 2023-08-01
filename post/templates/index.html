@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gistme | Home{% endblock  %}
+{% block content %}
+
+<!-----------------------slider -->
+    <div class="container mb-5">
+
+      <div class="main-slider owl-single owl-carousel">
+
+        <div class="huge-article d-md-flex">
+          <div class="img-wrap">
+            <a href="#"><img src="{% static 'images/img_h_4.jpg' %}" alt="Image" class="img-fluid"></a>
+          </div>
+          <div class="text-wrap">
+            <div class="meta`">
+              <span class="d-inline-block">2 Mins Read</span>
+              <span class="mx-2">&bullet;</span>
+              <span><a href="#">2 Comments</a></span>
+            </div>
+            <h3 class="text-primary"><a href="#">How to become a Good Web Designer &mdash; from Zero to Hero</a></h3>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <div class="author d-flex align-items-center">
+              <div class="img mr-3">
+                <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid">
+              </div>
+              <div class="text">
+                <h3><a href="#">James Doe</a></h3>
+                <strong>Chief Editor / Blogger</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+
+        <div class="huge-article d-md-flex lg-shadow">
+          <div class="img-wrap">
+            <a href="#"><img src="{% static 'images/img_h_2.jpg' %}" alt="Image" class="img-fluid"></a>
+          </div>
+          <div class="text-wrap">
+            <div class="meta`">
+              <span class="d-inline-block">2 Mins Read</span>
+              <span class="mx-2">&bullet;</span>
+              <span><a href="#">2 Comments</a></span>
+            </div>
+            <h3 class="text-primary"> <a href="#">How to become a Good Web Designer &mdash; from Zero to Hero</a></h3>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <div class="author d-flex align-items-center">
+              <div class="img mr-3">
+                <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid">
+              </div>
+              <div class="text">
+                <h3><a href="#">James Doe</a></h3>
+                <strong>Chief Editor / Blogger</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- item -->
+
+        <div class="huge-article d-md-flex">
+          <div class="img-wrap">
+            <a href="#"><img src="{% static 'images/img_h_3.jpg' %}" alt="Image" class="img-fluid"></a>
+          </div>
+          <div class="text-wrap">
+            <div class="meta`">
+              <span class="d-inline-block">2 Mins Read</span>
+              <span class="mx-2">&bullet;</span>
+              <span><a href="#">2 Comments</a></span>
+            </div>
+            <h3 class="text-primary"><a href="#">How to become a Good Web Designer &mdash; from Zero to Hero</a></h3>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <div class="author d-flex align-items-center">
+              <div class="img mr-3">
+                <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid">
+              </div>
+              <div class="text">
+                <h3><a href="#">James Doe</a></h3>
+                <strong>Chief Editor / Blogger</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- end of slider -->
+
+
+<div class="container mb-5">
+    <div class="row">
+  <!-- latest news  -->
+          <div class="col-12">
+            <h2 class="section-title">Latest News</h2>
+          </div>
+          {% for posts in page.object_list %}
+          <div class="col-3 shadow-sm ">
+          <div class="post-entry">
+            <div class="media">
+              <a href="#"><img src="{{posts.image.url}}" alt="Image" class="img-fluid img"></a>
+            </div>
+            <div class="text">
+
+              <div class="meta-cat text-primary">Category:{{posts.category}}</div>
+              <h2 class="text-primary"><a href="{%  url 'single'  posts.pk %}">{{posts.title}}</a></h2>
+              <div class="meta">
+                <span>{{posts.created|timesince}} Ago</span>
+                <span>&bullet;</span>
+                <span>5 mins read</span>
+              </div>
+              <p><a href="{%  url 'single'  posts.pk%}">{{posts.content|truncatewords:20}} <span class=" text-primary">Read More</span></a></p>
+              
+            </div>
+            <div class="author d-flex align-items-center">
+              <div class="img mr-3">
+                <a href="#"><img src="{% static 'images/person_1.png' %}" alt="Image" class="img-fluid"></a>
+
+              
+              </div>
+              <div class="text">
+                <strong>Posted By</strong>
+                <h3><a href="#">{{posts.Author}}</a></h3>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+          {% endfor %}  
+     </div>
+  </div>
+
+
+ <div class="container">
+  <div class="row">
+    <hr>
+    <div class="col-3">
+      
+          {% if page.has_previous %}
+          <a class="btn btn-primary" href="?page=1">First</a> |
+          <a class="btn btn-primary" href="?page={{page.previous_page_number}}">&#10094;&#10094;Previous</a>
+          {% endif %}
+
+    </div>
+    <div class="col-3">
+   
+        <center><span class="text-primary section-title">Page &nbsp; {{page.number }} of {{page.paginator.num_pages}} </span> </center>
+      </div>
+    <div class="col-3">
+        {% if page.has_next %}
+        <a class="btn btn-primary" href="?page={{page.next_page_number}}">Next&#10095;&#10095;</a> |
+        <a class="btn btn-primary" href="?page={{page.paginator.num_pages}}"> Last</a>
+        {% endif %}
+    </div>
+
+    <div class="col-3">&nbsp;</div>
+
+  </div>
+ </div>
+
+
+    
+       
+    
+        
+  <!-- end of  -->
+
+<!------Must Visited -->
+    <div class="section-latest">
+      <div class="container">
+        <div class="row gutter-v1 align-items-stretch mb-5">
+          <div class="col-12">
+            <h2 class="section-title">Most Visited</h2>
+          </div>
+          <div class="col-md-9 pr-md-5">
+            <div class="row">
+              {% for posts in visited reversed  %}
+              <div class="col-12">
+                <div class="post-entry horizontal d-md-flex">
+                  <div class="media">
+                    <a href="{%  url 'single'  posts.pk%}"><img src="{{posts.image.url}}" alt="Image" class="img-fluid"></a>
+                  </div>
+                  <div class="text">
+                    <div class="meta">
+                      <span>{{posts.created|date:' M-D-Y'}}</span>
+                      <span>&bullet;</span>
+                    
+                    </div>
+                    <h2><a href="{%  url 'single'  posts.pk %}">{{posts.title}}</a></h2>
+                    <p><a href="{%  url 'single'  posts.pk%}">{{posts.content|truncatewords:20}} <span style="color:#a4c639; ">Read More</span></a></p>
+                    
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+<!------------end of Must Visited-->
+
+
+<!---------------------Sidebar--------------------------------->
+      
+<div class="col-lg-3 mb-5 mb-lg-0 order-lg-3">
+
+  <div class="mb-4">
+    <a href="https://vimeo.com/342333493" data-fancybox class="video-wrap">
+      <span class="play-wrap"><span class="icon-play"></span></span>
+      <img src="{% static 'images/img_h_5.jpg' %}" alt="Image" class="img-fluid rounded">
+    </a>
+  </div>  
+
+  <div class="share floating-block sticky-top">
+    
+    <h2 class="mb-3 text-primary text-center" >Subscribe to Newsletter</h2>
+    <h2 class="mb-3 text-primary text-center">To receive our Update</h2>
+    {% for message in messages  %}
+    <p class="mb-3 text-primary text-center">{{message}}</p> 
+    {% endfor %}
+      <form action="#" method="POST">
+        {% csrf_token %}
+        {{ sidebar.as_p }}
+        <input type="submit" value="Subscribe" class="btn btn-primary btn-block">
+      </form>
+  </div>
+</div>
+</div>
+</div>
+
+<!---------------------Sidebar end--------------------------------->
+         
+    
+    {% endblock  %}

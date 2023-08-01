@@ -1,0 +1,56 @@
+
+{% extends 'base2.html' %}
+{% load static %}
+{% block title %}Gistme | User Login{% endblock %}
+<script>function preback(){window.history.forward();}setTimeout("preback(),0");window.onunload=function(){null;}</script>
+
+
+{% block content %}
+
+<style>h4{color:#a4c639;}</style>
+
+<body>
+    
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+
+                {% for message in messages  %}
+                <h4 style="text-align:center">{{message}}</h4> 
+                {% endfor %}
+                <span class="title">Login &nbsp;  &nbsp; <span style="color:#a4c639;">Gistme.com</span></span>
+
+                <form action=""  method="POST">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        <input type="text" name="username" placeholder="Enter your username" required>
+                        <i class="uil uil-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="pass1" class="password" placeholder="Enter your password" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="logCheck">
+                            <label for="logCheck" class="text">Remember me</label>
+                        </div>
+                        
+                        <a href="#" class="text">Forgot password?</a>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="submit" value="Login">
+                    </div>
+                </form>
+
+                
+            </div>
+            
+        </div>
+    </div>
+
+    {% endblock %} 
+    

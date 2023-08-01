@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gistme | Search {% endblock  %}
+{% block content %}
+
+<!-----------------------slider -->
+    <div class="container mb-5">
+ 
+
+
+<div class="container mb-5">
+    <div class="row">
+  <!-- latest news  -->
+          <div class="col-12">
+            <h2 class="section-title">Searched Result</h2>
+          </div>
+          {% for posts in dbsearched  %}
+          <div class="col-3 lg-shadow">
+          <div class="post-entry">
+            <div class="media">
+              <a href="#"><img src="{{posts.image.url}}" alt="Image" class="img-fluid img"></a>
+            </div>
+            <div class="text">
+              <div class="meta-cat text-primary">Category:{{posts.category}}</div>
+              <h2 class="text-primary"><a href="{%  url 'single'  posts.pk %}">{{posts.title}}</a></h2>
+              <div class="meta">
+                <span>{{posts.created|timesince}} Ago</span>
+                <span>&bullet;</span>
+                <span>5 mins read</span>
+              </div>
+              <p>  <a href="{%  url 'single'  posts.pk%}">{{posts.content|truncatewords:20}} <span class=" text-primary">Read More</span></a></p>
+              
+            </div>
+            <div class="author d-flex align-items-center">
+              <div class="img mr-3">
+                <a href="#"><img src="{% static 'images/person_1.png' %}" alt="Image" class="img-fluid"></a>
+
+
+              
+              </div>
+              <div class="text">
+                <strong>Posted By</strong>
+                <h3><a href="#">{{posts.Author}}</a></h3>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+          {% endfor %}   
+     </div>
+  </div>
+</div>
+  <!-- end of latest news  -->
+
+<!------Must Visited -->
+    <div class="section-latest">
+      <div class="container">
+        <div class="row gutter-v1 align-items-stretch ">
+          <div class="col-12">
+            <h2 class="section-title">Most Visited</h2>
+          </div>
+          <div class="col-md-9 pr-md-5">
+            <div class="row">
+              {% for posts in visited reversed  %}
+              <div class="col-12">
+                <div class="post-entry horizontal d-md-flex">
+                  <div class="media">
+                    <a href="{%  url 'single'  posts.pk%}"> <img src="{{posts.image.url}}" alt="Image" class="img-fluid"></a>
+                  </div>
+                  <div class="text">
+                    <div class="meta">
+                      <span>{{posts.created|date:' M-D-Y'}}</span>
+                      <span>&bullet;</span>
+                    
+                    </div>
+                    <h2><a href="{%  url 'single'  posts.pk%}">{{posts.title}}</a></h2>
+                    <p><a href="{%  url 'single'  posts.pk%}">{{posts.content|truncatewords:20}}<span class=" text-primary">Read More</span></a></p>
+                    
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+<!------------end of Must Visited-->
+
+<div class="col-lg-3 mb-5 mb-lg-0 order-lg-3">
+
+  <div class="mb-4">
+    <a href="https://vimeo.com/342333493" data-fancybox class="video-wrap">
+      <span class="play-wrap"><span class="icon-play"></span></span>
+      <img src="{% static 'images/img_h_5.jpg' %}" alt="Image" class="img-fluid rounded">
+    </a>
+  </div>  
+
+  <div class="share floating-block sticky-top">
+    
+    <h2 class="mb-3 text-primary text-center" >Subscribe to Newsletter</h2>
+    <h2 class="mb-3 text-primary text-center">To receive our Update</h2>
+      <form action="#">
+        <input type="email" class="form-control mb-2" placeholder="Enter email">
+        <input type="submit" value="Subscribe" class="btn btn-primary btn-block">
+      </form>
+  </div>
+</div>
+</div>
+</div>
+
+
+    {% endblock  %}
